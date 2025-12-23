@@ -1,19 +1,16 @@
-import React from 'react';
-import { CategorizedPayment } from '../utils/loanUtils';
+import { CategorizedPayment, formatDate, statusBadgeClasses } from '../utils/loanUtils'
 
 interface LoanPaymentsProps {
     payments: CategorizedPayment[];
-    loanName: string;
 }
 
-export const LoanPayments: React.FC<LoanPaymentsProps> = ({ payments, loanName }) => {
+export const LoanPayments = ({ payments }: LoanPaymentsProps) => {
     if (!payments || payments.length === 0) {
         return <div>No payment history available</div>;
     }
 
     return (
         <div className="loan-payments">
-            <h3>Payment History: {loanName}</h3>
             <div className="payments-table">
                 <table>
                     <thead>
@@ -25,19 +22,13 @@ export const LoanPayments: React.FC<LoanPaymentsProps> = ({ payments, loanName }
                         </tr>
                     </thead>
                     <tbody>
-                        {payments.map((payment, index) => (
-                            <tr key={index}>
-                                <td>{new Date(payment.dueDate).toLocaleDateString()}</td>
-                                <td>{payment.paymentDate ? new Date(payment.paymentDate).toLocaleDateString() : 'N/A'}</td>
-                                <td>${payment.amount.toFixed(2)}</td>
+                        {payments.map((payment) => (
+                            <tr key={payment.id}>
+                                <td>{formatDate(payment.dueDate) ?? 'N/A'}</td>
+                                <td>{formatDate(payment.paymentDate) ?? 'N/A'}</td>
+                                <td>UGX {payment.amount.toLocaleString()}</td>
                                 <td>
-                                    <span style={{
-                                        color: 'white',
-                                        backgroundColor: payment.statusColor,
-                                        padding: '2px 8px',
-                                        borderRadius: '4px',
-                                        fontSize: '0.8em',
-                                    }}>
+                                    <span className={statusBadgeClasses[payment.status]}>
                                         {payment.status}
                                     </span>
                                 </td>

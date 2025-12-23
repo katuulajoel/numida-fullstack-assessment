@@ -1,4 +1,4 @@
-![Numida](../logo.numida.png)
+![Numida](./web/src/assets/logo.numida.png)
 
 # What are we looking for in an engineer?
 
@@ -41,6 +41,10 @@ Update a basic server & web app to display some loan statuses.
 ## Setting Up Local Server
 
 Please refer to the server [README](server/README.md) file in the root directory of the project to set up the local server.
+
+## Running the Web App
+
+For instructions on setting up and running the web application, refer to the [web README](web/README.md).
 
 ## Requirements
 

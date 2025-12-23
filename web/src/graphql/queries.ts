@@ -1,0 +1,19 @@
+import { gql } from '@apollo/client'
+
+export const GET_LOANS = gql`
+  query GetLoans {
+    loans {
+      id
+      name
+      interestRate
+      principal
+      dueDate
+      termMonths
+      payments {
+        id
+        paymentDate
+        amount
+      }
+    }
+  }
+`

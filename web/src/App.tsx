@@ -1,46 +1,30 @@
 import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import logo from './assets/logo.numida.png';
+import LoansPage from './pages/LoansPage'
+import LoanDetailPage from './pages/LoanDetailPage'
 
-const AddNewPayment = () => {
-    return (
+const App = () => {
+  return (
+    <div className="app">
+      <header className="app__header">
         <div>
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault()
-                }}
-            >
-                <p>
-                    <label>Payment Loan Id</label>
-                    <input name="loan-id" onChange={() => {}} />
-                </p>
-
-                <p>
-                    <label>Payment Amount</label>
-                    <input
-                        name="payment-amount"
-                        type="number"
-                        onChange={() => {}}
-                    />
-                </p>
-                <p>
-                    <button type="submit">Add Payment</button>
-                </p>
-            </form>
+          <h1>Loan Payment Dashboard</h1>
+          <p className="app__subtitle">
+            Track loan statuses, payment timing, and outstanding balances in one view.
+          </p>
         </div>
-    )
-}
+        <div className="app__logo" aria-hidden="true">
+          <img src={logo} alt="Numida Logo" className="logo-image" />
+        </div>
+      </header>
 
-function App() {
-    return (
-        <>
-            <div>
-                <h1>Existing Loans & Payments</h1>
-                <ul></ul>
-
-                <h1>Add New Payment</h1>
-                <AddNewPayment />
-            </div>
-        </>
-    )
+      <Routes>
+        <Route path="/" element={<LoansPage />} />
+        <Route path="/loans/:id" element={<LoanDetailPage />} />
+      </Routes>
+    </div>
+  )
 }
 
 export default App
